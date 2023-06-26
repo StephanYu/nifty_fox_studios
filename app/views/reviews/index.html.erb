@@ -1,0 +1,22 @@
+<div class="border-b border-gray-200 bg-white py-5">
+  <h1 class="text-lg font-semibold leading-6 text-gray-900">Reviews for</h3>
+  <%= link_to @movie.title, @movie, class: "mt-1 text-sm text-gray-500"%>
+</div>
+
+<ul role="list" class="divide-y divide-gray-100">
+  <% @reviews.each do |review| %>
+    <li class="flex gap-x-4 py-5">
+      <%= image_tag("ghost.jpg", class: "h-12 w-12 flex-none rounded-full bg-gray-50") %>
+      <div class="flex-auto">
+        <div class="flex items-baseline justify-between gap-x-4">
+          <p class="text-sm font-semibold leading-6 text-gray-900"><%= review.name %></p>
+          <p class="text-sm font-semibold leading-6 text-gray-900"><%= pluralize(review.stars, 'star') %></p>
+          <p class="flex-none text-xs text-gray-600">
+            <time datetime="2023-03-04T15:54Z"><%= time_ago_in_words(review.created_at) %> ago</time>
+          </p>
+        </div>
+        <p class="mt-1 line-clamp-2 text-sm leading-6 text-gray-600"><%= review.comment %></p>
+      </div>
+    </li>
+  <% end %>
+</ul>

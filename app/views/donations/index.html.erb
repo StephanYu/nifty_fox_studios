@@ -1,0 +1,20 @@
+<!-- Notification -->
+<%= render partial: "donations/notification" %>
+
+<section class="mx-auto mt-20 max-w-5xl px-8">
+  <!-- CONTAINER -->
+  <div class="flex items-start">
+    <!-- LEFT SIDE -->
+    <div class="w-1/2">
+      <!-- UserProfile -->
+      <%= render partial: "donations/profile" %>
+      <!-- Transactions -->
+      <%= render partial: "donations/transactions" %>
+    </div>
+    <!-- RIGHT SIDE -->
+    <div class="w-1/2 h-screen sticky top-0 z-50 pl-2 grid justify-items-end">
+      <!-- Form -->
+      <%= render partial: "donations/form" %>
+    </div>
+  </div>
+</section>

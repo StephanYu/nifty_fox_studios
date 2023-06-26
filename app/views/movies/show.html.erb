@@ -1,0 +1,72 @@
+<div class="bg-white">
+  <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+    <!-- Product details -->
+    <div class="lg:max-w-lg lg:self-end">
+
+      <div class="mt-4">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><%= @movie.title %></h1>
+      </div>
+
+      <section aria-labelledby="information-heading" class="mt-4">
+        <h2 id="information-heading" class="sr-only">Product information</h2>
+
+        <div class="flex items-center">
+          <p class="text-lg text-gray-900 sm:text-xl"><%= @movie.release_year %> &bull; Rating <%= @movie.rating %></p>
+
+          <div class="ml-4 border-l border-gray-300 pl-4">
+            <h2 class="sr-only">Reviews</h2>
+            <div class="flex items-center">
+              <div>
+                <div class="flex items-center">
+                  <!-- Active: "text-yellow-400", Default: "text-gray-300" -->
+                  <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                  </svg>
+                  <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                  </svg>
+                  <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                  </svg>
+                  <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                  </svg>
+                  <svg class="text-gray-300 h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <p class="sr-only"><%= average_stars(@movie) %></p>
+              </div>
+              <p class="ml-2 text-sm text-gray-500"><%= link_to pluralize(@movie.reviews.size, "review"),
+            movie_reviews_path(@movie) %></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 space-y-6">
+          <p class="text-base text-gray-500"><%= @movie.description %></p>
+        </div>
+
+        <div class="mt-6 flex-row items-center">
+          <p class="text-sm text-gray-500">Director: <%= @movie.director %></p>
+          <p class="text-sm text-gray-500">Genre: <%= @movie.genre %></p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Product image -->
+    <div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
+      <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg">
+        <%= main_image(@movie) %>
+      </div>
+    </div>
+
+    <div class="mt-20 flex space-x-5">
+      <%= link_to "Edit", edit_movie_path(@movie), class: "flex w-1/3 items-center justify-center text-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50" %>
+      <%= link_to "Write Review", new_movie_review_path(@movie), class: "flex w-1/3 items-center justify-center text-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50" %>
+    </div>
+  </div>
+  </div>
+</div>
+
+
