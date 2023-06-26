@@ -63,7 +63,7 @@ The most obvious shortcoming of the app is the lack of a User model and auth fun
 
 - Integration with Metamask Web3 Wallet for ETH donations
 
-## How to obtain API keys
+## Obtain and set the API keys
 
 All external API secret access keys have been encrypted via Rails. You can obtain your own API key for the **IMDB-Top-100** by simply registering on the Rapid API platform.
 
@@ -78,12 +78,23 @@ rapidapi:
   imdb100_host: <YOUR_API_HOST>
 ```
 
-## How to launch the app via Docker Compose:
+Save the changes by closing the file.
 
-You’ll need the following prerequisites on your machine:
+## Set the DB credentials
 
-**Docker**: Make sure you install the correct version for your operating system.
-**Docker Compose**: Instructions to install it are available on the Docker docs.
+Run `rails credentials:edit` to open a temporary file in your default editor.
 
-Now, start the containers by running `docker-compose up`.
-Navigate to http://localhost:3000.
+Then add the following credentials to the file replacing the ALL_CAPS variables with your newly obtained credentials.
+
+```
+database:
+  username: <YOUR DB USERNAME>
+  password: <YOUR DB PASSWORD>
+```
+
+Save the changes by closing the file.
+
+## Launch the app on your local machine:
+
+Run `rails db:setup` (or `rails db:reset rails db:migrate rails db:seed`) to reset the database, run all of the migrations, and seed the database with the films data from the third party API.
+Run `bin/dev`to start the app on localhost:3000.
