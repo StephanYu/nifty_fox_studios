@@ -15,14 +15,18 @@
           <%= link_to 'Recent', filtered_movies_path(:recent) %>
           <%= link_to 'About', about_path %>
           <%= link_to 'Donate', donate_path %>
-          <% if current_user %>
-            <%= link_to current_user.name.capitalize, current_user %>
-            <%= link_to "Sign Out", session_path, data: { turbo_method: :delete } %>
-          <% else %>
-            <%= link_to "Sign Up", signup_path %>
-            <%= link_to "Sign In", signin_path%>
-          <% end %>
         </div>
+      </div>
+
+      <!-- Auth menu -->
+      <div class="hidden items-center space-x-6 md:flex md:flex-1 md:justify-end">
+        <% if current_user %>
+          <%= link_to current_user.name.capitalize, current_user %>
+          <%= link_to "Sign Out", session_path, data: { turbo_method: :delete } %>
+        <% else %>
+          <%= link_to "Sign Up", signup_path %>
+          <%= link_to "Sign In", signin_path%>
+        <% end %>
       </div>
 
       <!-- Wallet -->
