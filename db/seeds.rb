@@ -24,7 +24,6 @@ end
 
 movies = JSON.parse(response.read_body)
 puts "Total Movies downloaded: #{movies.count}"
-
 # 2. Create a new movie record for each movie in the API response
 # Example movie record:
 # rank:1
@@ -50,17 +49,13 @@ begin
     puts "Creating movie #{index + 1}: #{movie["title"]}"
 
     movie = Movie.new({
-      title: movie["title"],
-      description: movie["description"],
-      release_year: movie["year"],
-      rating: movie["rating"],
-      director: movie["director"][0],
-      genre: movie["genre"][0],
-      imdb_id: movie["imdbid"],
-      rank: movie["rank"],
-      image_thumbnail_url: movie["thumbnail"],
-      image_url: movie["image"],
-      trailer_url: movie["trailer"]
+      title: movie.dig("title"),
+      release_year: movie.dig("year"),
+      rating: movie.dig("rating"),
+      genre: movie.dig("genre", 0),
+      rank: movie.dig("rank"),
+      image_thumbnail_url: movie.dig("thumbnail"),
+      image_url: movie.dig("image"),
     })
     if movie.save!
       puts "Movie #{movie.title} created!"

@@ -97,4 +97,5 @@ Save the changes by closing the file.
 ## Launch the app on your local machine:
 
 Run `rails db:setup` (or `rails db:reset rails db:migrate rails db:seed`) to reset the database, run all of the migrations, and seed the database with the films data from the third party API.
+
 Run `bin/dev`to start the app on localhost:3000.

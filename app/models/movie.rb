@@ -5,8 +5,7 @@ class Movie < ApplicationRecord
   has_one_attached :main_image
 
   validates :title, presence: true, uniqueness: true
-  validates :release_year, :rating, :director, :rank, :genre, :imdb_id, :image_url, presence: true
-  validates :description, length: { minimum: 25 }
+  validates :release_year, :rating, :rank, :genre, :image_url, presence: true  
   validate :acceptable_image_format
 
   scope :released, -> { where("release_year < ?", Time.now.year).order(release_year: :desc) }

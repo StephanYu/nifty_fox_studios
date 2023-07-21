@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
   before_action :set_movie, except: [:index]
-  skip_before_action :verify_authenticity_token, only: [:update]
+  before_action :require_signin, except: [:index, :show]
+  before_action :require_admin, except: [:index, :show]
   
   def index
     case params[:query]
@@ -15,6 +16,24 @@ class MoviesController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @movies }
+    end
+  end
+
+  def new
+  end
+
+  def create
+    @movie = Movie.new(movie_params)
+    if @movie.save
+      respond_to do |format|
+        format.html { redirect_to @movie, notice: "Movie successfully created!" }
+        format.json { render json: @movie }
+      end
+    else
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @movie.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -37,6 +56,14 @@ class MoviesController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @movie.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @movie.destroy
+    respond_to do |format|
+      format.html { redirect_to movies_url, notice: "Movie successfully deleted!" }
+      format.json { head :no_content }
     end
   end
 

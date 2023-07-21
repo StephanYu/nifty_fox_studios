@@ -9,7 +9,9 @@
       <%= image_tag("ghost.jpg", class: "h-12 w-12 flex-none rounded-full bg-gray-50") %>
       <div class="flex-auto">
         <div class="flex items-baseline justify-between gap-x-4">
-          <p class="text-sm font-semibold leading-6 text-gray-900"><%= review.name %></p>
+          <p class="text-sm font-semibold leading-6 text-gray-900">
+            <%= link_to review.user.name.capitalize, review.user %>
+          </p>
           <p class="text-sm font-semibold leading-6 text-gray-900"><%= pluralize(review.stars, 'star') %></p>
           <p class="flex-none text-xs text-gray-600">
             <time datetime="2023-03-04T15:54Z"><%= time_ago_in_words(review.created_at) %> ago</time>

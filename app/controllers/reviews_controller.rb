@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :set_movie
-  skip_before_action :verify_authenticity_token, only: [:create]
+  before_action :require_signin, except: [:index]
+  before_action :require_admin, only: [:destroy]
 
   def index
     @reviews = @movie.reviews
@@ -17,6 +18,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = @movie.reviews.new(review_params)
+    @review.user = current_user
 
     respond_to do |format|
       if @review.save
@@ -29,9 +31,27 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def edit
+    @review = @movie.reviews.find(params[:id])
+  end
+
+  def update
+    @review = @movie.reviews.find(params[:id])
+
+    respond_to do |format|
+      if @review.update(review_params)
+        format.html { redirect_to movie_reviews_path(@movie), notice: "Review successfully updated!" }
+        format.json { render json: @review }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @review.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     def review_params
-      params.require(:review).permit(:name, :stars, :comment)
+      params.require(:review).permit(:stars, :comment)
     end
 
     def set_movie

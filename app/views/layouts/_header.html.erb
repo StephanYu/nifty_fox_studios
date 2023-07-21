@@ -15,6 +15,13 @@
           <%= link_to 'Recent', filtered_movies_path(:recent) %>
           <%= link_to 'About', about_path %>
           <%= link_to 'Donate', donate_path %>
+          <% if current_user %>
+            <%= link_to current_user.name.capitalize, current_user %>
+            <%= link_to "Sign Out", session_path, data: { turbo_method: :delete } %>
+          <% else %>
+            <%= link_to "Sign Up", signup_path %>
+            <%= link_to "Sign In", signin_path%>
+          <% end %>
         </div>
       </div>
 
@@ -40,6 +47,13 @@
           <%= link_to 'Recent', filtered_movies_path(:recent), class: "hover:underline" %>
           <%= link_to 'About', about_path %>
           <%= link_to 'Donate', donate_path, class: "hover:underline" %>
+          <% if current_user %>
+            <%= link_to current_user.name.capitalize, current_user %>
+            <%= link_to "Sign Out", session_path, data: { turbo_method: :delete } %>
+          <% else %>
+            <%= link_to "Sign Up", signup_path %>
+            <%= link_to "Sign In", signin_path%>
+          <% end %>
         </div>
         <button x-on:click="open = ! open">
           <ion-icon
