@@ -54,6 +54,12 @@ gem 'active_model_serializers'
 # Use Tailwind CSS for stylesheets [https://tailwindcss.com/docs/rails]
 gem "tailwindcss-rails", "~> 2.0"
 
+# Use pagy for pagination
+gem 'pagy', '~> 6.0'
+
+# Use faker for generating fake data
+gem 'faker'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

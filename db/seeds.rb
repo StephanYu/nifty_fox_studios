@@ -66,6 +66,16 @@ begin
       movie.main_image.attach(io: main_image, filename: file_name)
     end
   end
+
+  User.create!(name: 'Adam', email: 'test@email.com', password: 'password', password_confirmation: 'password')
+
+  (1..20).each do |index|
+    puts "Creating reviews for movie 1..."
+    review = Review.new(stars: rand(1..5), comment: Faker::Lorem.paragraph(sentence_count: 2), movie_id: 1, user_id: 1)
+    if review.save!
+      puts "Review #{review.id} created!"
+    end
+  end
 rescue => exception
   puts "Error: #{exception.message}"
 end

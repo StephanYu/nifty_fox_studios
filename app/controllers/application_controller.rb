@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
+  
   private
     def require_signin
       session[:prev_requested_url] = request.url

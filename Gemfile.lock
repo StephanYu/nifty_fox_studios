@@ -98,6 +98,8 @@ GEM
     dockerfile-rails (1.5.0)
       rails
     erubi (1.12.0)
+    faker (3.2.0)
+      i18n (>= 1.8.11, < 2)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.14.1)
@@ -142,6 +144,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.15.2-x86_64-linux)
       racc (~> 1.4)
+    pagy (6.0.4)
     pg (1.5.3)
     public_suffix (5.0.1)
     puma (5.6.5)
@@ -239,8 +242,10 @@ DEPENDENCIES
   capybara
   debug
   dockerfile-rails (>= 1.5)
+  faker
   importmap-rails
   jbuilder
+  pagy (~> 6.0)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)

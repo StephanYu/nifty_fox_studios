@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
   before_action :require_admin, only: [:destroy]
 
   def index
-    @reviews = @movie.reviews
+    @pagy, @reviews = pagy(@movie.reviews)
 
     respond_to do |format|
       format.html
