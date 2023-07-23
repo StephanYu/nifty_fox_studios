@@ -50,6 +50,7 @@ begin
 
     movie = Movie.new({
       title: movie.dig("title"),
+      description: Faker::Lorem.paragraph(sentence_count: 5),
       release_year: movie.dig("year"),
       rating: movie.dig("rating"),
       genre: movie.dig("genre", 0),
